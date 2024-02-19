@@ -11,12 +11,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_InputField yearInput;
     [SerializeField] private TMP_InputField makeInput;
     [SerializeField] private GameObject startPanel;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private TMP_Text speedText;
+    Car newCar;
 
     public void OnCreateButtonClick()
     {
@@ -35,10 +31,26 @@ public class UIController : MonoBehaviour
         else
         {
             startPanel.SetActive(false);
-            Car newCar = new Car();
+            newCar = new Car();
             newCar.Make = makeInput.text;
             newCar.Year = int.Parse(yearInput.text);
             carText.text = $"Current Car: {newCar.Year} {newCar.Make}";
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            newCar.AccelerateCar();
+            speedText.text = $"Current Speed: {newCar.Speed}/100";
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            newCar.DecelerateCar();
+            speedText.text = $"Current Speed: {newCar.Speed}/100";
         }
     }
 }

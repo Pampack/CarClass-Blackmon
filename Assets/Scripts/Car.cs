@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class Car
@@ -6,6 +7,7 @@ public class Car
     private string make;
     private float currentSpeed = 0f;
     private float maxSpeed = 100f;
+    private float accelerationSpeed = 4.0f;
 
     public string Make
     {
@@ -31,27 +33,28 @@ public class Car
         }
     }
 
+    public float Speed
+    {
+        get
+        {
+            return currentSpeed;
+        }
+    }
+
     public void AccelerateCar()
     {
-        if(currentSpeed > maxSpeed)
+        if(currentSpeed < maxSpeed)
         {
-            currentSpeed = maxSpeed;
-        }
-        else if(Input.GetKey(KeyCode.UpArrow))
-        {
-            currentSpeed = (currentSpeed * 1 * Time.deltaTime);
+            currentSpeed = currentSpeed + accelerationSpeed * Time.deltaTime;
         }
     }
 
     public void DecelerateCar()
     {
-        if(currentSpeed < 0)
+        if(currentSpeed > 0.0f)
         {
-            currentSpeed = 0;
+            currentSpeed = currentSpeed - accelerationSpeed * Time.deltaTime;
         }
-        else if(Input.GetKey(KeyCode.DownArrow))
-        {
-            currentSpeed = (currentSpeed * -1 * Time.deltaTime);
-        }
+
     }
 }
