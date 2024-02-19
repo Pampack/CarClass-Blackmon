@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class Car
 {
+    //////////////////////////////////////////////
+    //Assignment/Lab/Project: Car Class
+    //Name: Riley Blackmon
+    //Section: SGD.213.2172
+    //Instructor: Brian Sowers
+    //Date: 02/19/2024
+    /////////////////////////////////////////////
+
+
     private int year;
     private string make;
     private float currentSpeed = 0f;
